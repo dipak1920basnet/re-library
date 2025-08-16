@@ -6,8 +6,51 @@
     <title>Document</title>
     <link rel="stylesheet" href="style_files/style.css">
     <script src="js_files/library.js"></script>
+     <!-- <script src="js_files/frontEnd_library.js"> </script> -->
+     
 </head>
 <body>
-    
+    <div class="container">
+        <header>
+            <h1>Welcome to our Library</h1>
+        </header>
+        <main>
+            <div class="add_book">
+                <button id="Add_Book">
+                    Add Book
+                </button>
+            </div>
+            <div class="book_content">
+                <div class="addBook_info">
+                    <form id="book_form" action="" method="">
+                        <label for="title">Title:</label><br>
+                        <input type="text" id="title" name="title" required><br><br>
+
+                        <label for="author">Author:</label><br>
+                        <input type="text" id="author" name="author" required><br><br>
+
+                        <label for="pages">Pages:</label><br>
+                        <input type="number" id="pages" name="pages" min="1" required><br><br>
+
+                        <label for="read_status">Read Status:</label><br>
+                        <select id="read_status" name="read_status" required>
+                        <option value="">--Select--</option>
+                        <option value="read">Read</option>
+                        <option value="unread">Unread</option>
+                        <!-- <option value="reading">Currently Reading</option> -->
+                        </select><br><br>
+
+                        <button id="submit" type="button">Submit</button>
+                    </form>
+                </div>
+                <div class="main_library">
+
+                </div>
+            </div>
+        </main>
+        <footer>
+            Thank you for using our library
+        </footer>
+    </div>
 </body>
 </html>

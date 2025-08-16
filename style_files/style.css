@@ -1,0 +1,119 @@
+.container
+{
+    /* background-color: palegreen; */
+    height: 100vh;
+}
+header
+{
+    /* padding: 2%; */
+    margin: 2%;
+    align-items: center;
+    text-align: center;
+    height: 2vh;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bolder;
+    font-style: italic;
+}
+.add_book
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 5vh;
+    /* border: 2px solid blue; */
+    
+    /* padding: 6%; */
+}
+.add_book> button
+{
+    height: 80%;
+    width: 10%;
+    border: 2px solid black;
+    border-radius: 30px;
+    background-color: red;
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bolder;
+    font-style: italic;
+    font-size: 28px;
+    /* padding: 2%; */
+    text-align: center;
+}
+.book_content
+{
+    margin: 2%;
+    border: 2px solid red;
+    height: 80vh;
+}
+
+.addBook_info
+{
+    width: 30vw;
+    /* border: 1px solid green; */
+    height: 100%;
+}
+
+form {
+    display: none;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+form input[type="text"],
+form input[type="number"],
+form select {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+form button {
+    background-color: #007BFF;
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+
+footer
+{
+    width: 100vw;
+    text-align: center;
+    font-style: oblique;
+    font-weight: 100;
+    font-size: larger;
+    font-weight: bolder;
+}

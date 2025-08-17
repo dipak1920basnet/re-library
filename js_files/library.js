@@ -76,6 +76,28 @@ function change_visiblity(form_name)
     }
 }
 
+// Create a book template
+function book_template(title,author,pages,read_status, uuid)
+{
+    let template = document.createElement('div');
+    template.setAttribute("id",uuid);
+    template.setAttribute("class","book_template")
+    template.innerHTML = `
+        <h2>Title: ${title}</h2>
+        <h4>ID: ${uuid}</h4>
+        <p><strong>Author:</strong> ${author}</p>
+        <p><strong>Pages:</strong> ${pages}</p>
+        <p><strong>Status:</strong> ${read_status}</p>
+        <button class="toggle_status" data-uuid="${uuid}">
+            Toggle Status
+        </button>
+        <button class="remove_book" data-uuid="${uuid}">
+            Remove Book
+        </button>
+    `;
+    return template;
+}
+
 // Add book to library list
 document.addEventListener("DOMContentLoaded",  ()=>{
 
@@ -99,9 +121,18 @@ document.addEventListener("DOMContentLoaded",  ()=>{
         let pages = document.getElementById("pages").value;
         let statuss = document.getElementById("read_status").value;
         addBookToLibrary(title,author,pages,statuss)
-        for(let i = 0;i<myLibrary.length; i++)
+        
+        const library_show = document.querySelector(".main_library")
+        for(let i=0; i<myLibrary.length; i++)
         {
-            console.log(myLibrary[i].title);
+            if (i == myLibrary.length-1)
+            {
+                let book_ = myLibrary[i]
+                template = book_template(book_.title, book_.author, book_.pages, book_.status, book_.uuid)
+                library_show.append(template)
+                break;
+            }
+            
         }
     })
 })

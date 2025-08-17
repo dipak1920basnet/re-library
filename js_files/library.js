@@ -19,6 +19,14 @@ function Book(title, author, pages, read_status)
     this.title = title;
     this.author = author;
     this.pages = pages ;
+    if (read_status == "read")
+    {
+        read_status = true;
+    }
+    else
+    {
+        read_status = false;
+    }
     this.read_status = read_status;
 }
 
@@ -34,30 +42,52 @@ function addBookToLibrary(title,author,pages,read_status)
     myLibrary.push(book)
 
 }
+// function removeBookFromLibrary(book_uuid)
+// {
+//     for (let i = 0; i < myLibrary.length; i++)
+//     {
+//         let current_book = myLibrary[i];
+//         if (current_book.uuid == book_uuid)
+//         {
+//             myLibrary.splice(i,1);
+//             return;
+//         }
+//     }
+//     return "Not found"
+// }
 
-function removeBookFromLibrary(book_uuid)
+// function change_reading_status(book_uuid)
+// {
+//     for (let i = 0; i < myLibrary.length; i++)
+//     {
+//         let current_book = myLibrary[i];
+//         if (current_book.uuid == book_uuid)
+//         {
+//             current_book.change_status();
+//             return;
+//         }
+//     }
+//     return "Not found"
+// }
+
+function change_remove_action(action, book_uuid)
 {
     for (let i = 0; i < myLibrary.length; i++)
     {
         let current_book = myLibrary[i];
-        if (current_book.uuid == book_uuid)
+        if (current_book.uuid === book_uuid)
         {
-            myLibrary.splice(i,1);
-            return;
-        }
-    }
-    return "Not found"
-}
-
-function change_reading_status(book_uuid)
-{
-    for (let i = 0; i < myLibrary.length; i++)
-    {
-        let current_book = myLibrary[i];
-        if (current_book.uuid == book_uuid)
-        {
-            current_book.change_status();
-            return;
+            switch(action)
+            {
+                case "toggle":
+                   current_book.change_status();
+                    return current_book;
+                case "remove":
+                    myLibrary.splice(i,1);
+                    return null;
+                default:
+                    return "Undefined action"; 
+            }
         }
     }
     return "Not found"
@@ -87,7 +117,7 @@ function book_template(title,author,pages,read_status, uuid)
         <h4>ID: ${uuid}</h4>
         <p><strong>Author:</strong> ${author}</p>
         <p><strong>Pages:</strong> ${pages}</p>
-        <p><strong>Status:</strong> ${read_status}</p>
+        <p class="book_status"><strong>Status:</strong> ${read_status}</p>
         <button class="toggle_status" data-uuid="${uuid}">
             Toggle Status
         </button>
@@ -95,6 +125,32 @@ function book_template(title,author,pages,read_status, uuid)
             Remove Book
         </button>
     `;
+    let toogleButton = template.querySelector(".toggle_status");
+    toogleButton.addEventListener("click", ()=>
+    {
+        let uuid_value = toogleButton.dataset.uuid;
+        const updatedbook = change_remove_action("toggle",uuid_value);
+
+        if (updatedbook)
+        {
+            const card = document.getElementById(uuid_value);
+            const statusElem = card.querySelector(".book_status");
+            if (statusElem)
+            {
+                statusElem.innerHTML = `<strong>Status:</strong> ${updatedbook.read_status}`;
+            }
+        }
+        
+    })
+    
+
+    let removeButton = template.querySelector(".remove_book");
+    removeButton.addEventListener("click",()=>
+    {
+        let uuid_value = removeButton.dataset.uuid;
+        change_remove_action("remove",uuid_value);
+    })
+
     return template;
 }
 
@@ -128,7 +184,7 @@ document.addEventListener("DOMContentLoaded",  ()=>{
             if (i == myLibrary.length-1)
             {
                 let book_ = myLibrary[i]
-                template = book_template(book_.title, book_.author, book_.pages, book_.status, book_.uuid)
+                let template = book_template(book_.title, book_.author, book_.pages, book_.read_status, book_.uuid);
                 library_show.append(template)
                 break;
             }
